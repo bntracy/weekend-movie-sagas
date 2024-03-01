@@ -25,7 +25,14 @@ function* fetchAllMovies() {
 }
 
 function* fetchMovieDetails(action) {
-  console.log('in saga with id:', action.payload);
+  try {
+    // Get the movie details
+    const movieDetailsResponse = yield axios.get(`/api/movies/${action.payload}`);
+    // TODO: Set the value of the movie details reducer
+  }
+  catch (error) {
+    console.log('fetchMovieDetails error:', error);
+  }
 }
 
 // Create sagaMiddleware
