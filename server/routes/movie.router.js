@@ -22,7 +22,7 @@ router.get('/:id', (req, res) => {
   console.log('req.params.id:', req.params.id);
   // get the movie details, including all genres
   const query = `
-    SELECT title, poster, description, name FROM "movies"
+    SELECT title, poster, description, name AS genre, movies_genres.id AS id FROM "movies"
     JOIN "movies_genres" ON movies.id=movies_genres.movie_id
     JOIN "genres" ON movies_genres.genre_id=genres.id
     WHERE movies.id=$1;
