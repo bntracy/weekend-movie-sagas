@@ -17,15 +17,27 @@ function MovieDetails() {
 
     useEffect(fetchMovieDetails, []);
 
+    const displayMovieDetails = () => {
+        if (movieDetails.length > 0) {
+            return (<>
+                <h3>{movieDetails[0].title}</h3>
+                <img src={movieDetails[0].poster} alt={movieDetails[0].title}/>
+                <p>{movieDetails[0].description}</p>
+                <p>Genres:</p>
+                <ul>
+                    {movieDetails.map(detail => <li key={detail.id}>{detail.genre}</li>)}
+                </ul>
+            </>);
+        } else {
+            return <p>Details coming...</p>;
+        }
+    }
+
     return <>
-        <h2 data-testid="movieDetails">Details</h2>
-        <h3>{movieDetails[0].title}</h3>
-        <img src={movieDetails[0].poster} alt={movieDetails[0].title}/>
-        <p>{movieDetails[0].description}</p>
-        <p>Genres:</p>
-        <ul>
-            {movieDetails.map(detail => <li key={detail.id}>{detail.genre}</li>)}
-        </ul>
+        <h2>Details</h2>
+        <div data-testid="movieDetails" >
+          {displayMovieDetails()}
+        </div>
         <button onClick={()=>history.push('/')} data-testid="toList">Back to Movie List</button>
     </>;
 }
