@@ -20,6 +20,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   console.log('req.params.id:', req.params.id);
+  // get the movie details, including all genres
   const query = `
     SELECT title, poster, description, name FROM "movies"
     JOIN "movies_genres" ON movies.id=movies_genres.movie_id
@@ -28,7 +29,6 @@ router.get('/:id', (req, res) => {
   `;
   pool.query(query, [req.params.id])
     .then(result => {
-      console.log(result.rows);
       res.send(result.rows);
     })
     .catch(err => {
