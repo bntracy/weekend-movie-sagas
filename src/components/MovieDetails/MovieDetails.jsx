@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
+import './MovieDetails.css';
 
 function MovieDetails() {
     const dispatch = useDispatch();
@@ -23,7 +24,7 @@ function MovieDetails() {
                 <h3>{movieDetails[0].title}</h3>
                 <img src={movieDetails[0].poster} alt={movieDetails[0].title}/>
                 <p>{movieDetails[0].description}</p>
-                <p>Genres:</p>
+                <h4>Genres:</h4>
                 <ul>
                     {movieDetails.map(detail => <li key={detail.id}>{detail.genre}</li>)}
                 </ul>
